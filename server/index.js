@@ -47,7 +47,7 @@ const app = express();
 
 // Secure Dynamic CORS configuration
 const allowedOrigins = [
-  "http://localhost:5173",
+  "http://localhost:5176",
   "https://crack-it-two.vercel.app"
 ];
 
@@ -95,8 +95,9 @@ app.get('/', (req, res) => {
   res.send('Crackit API is running...');
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5003;
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
 });
+console.log("Server initiated...");

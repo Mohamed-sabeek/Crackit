@@ -18,10 +18,14 @@ const BookTable = ({ books, onEdit, onDelete }) => {
             <tr key={book._id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <td className="py-4 px-4 flex items-center gap-4">
                 <img 
-                  src={book.thumbnail || `https://placehold.co/400x600/e2e8f0/1e293b?text=${encodeURIComponent(book.subject)}`} 
+                  src={book.thumbnail || `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(book.subject || 'Book')}`} 
                   alt={book.title} 
                   className="w-10 h-14 object-cover rounded bg-slate-200" 
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(book.subject || 'Book')}`;
+                  }}
                 />
                 <div>
                   <p className="font-bold text-slate-900 dark:text-white">{book.title}</p>

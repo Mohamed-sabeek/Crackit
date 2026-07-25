@@ -17,10 +17,14 @@ const PaperTable = ({ papers, onEdit, onDelete }) => {
             <tr key={paper._id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <td className="py-4 px-4 flex items-center gap-4">
                 <img 
-                  src={paper.thumbnail || `https://placehold.co/400x600/e2e8f0/1e293b?text=${encodeURIComponent(paper.exam)}`} 
+                  src={paper.thumbnail || `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(paper.exam || 'Paper')}`} 
                   alt={paper.title} 
                   className="w-10 h-14 object-cover rounded bg-slate-200" 
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(paper.exam || 'Paper')}`;
+                  }}
                 />
                 <div>
                   <p className="font-bold text-slate-900 dark:text-white">{paper.title}</p>

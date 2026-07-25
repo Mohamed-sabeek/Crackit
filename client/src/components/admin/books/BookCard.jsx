@@ -6,10 +6,14 @@ const BookCard = ({ book, onEdit, onDelete }) => {
     <div className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:shadow-xl hover:shadow-indigo-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col relative">
       <div className="w-full aspect-[4/5] relative bg-slate-100 dark:bg-slate-950 overflow-hidden">
         <img 
-          src={book.thumbnail || `https://placehold.co/400x600/e2e8f0/1e293b?text=${encodeURIComponent(book.subject)}`} 
+          src={book.thumbnail || `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(book.subject || 'Book')}`} 
           alt={book.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(book.subject || 'Book')}`;
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>

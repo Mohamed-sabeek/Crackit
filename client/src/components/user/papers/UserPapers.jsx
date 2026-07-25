@@ -223,9 +223,13 @@ const UserPapers = () => {
                     : 'w-full aspect-[4/5] relative'
                 } bg-slate-100 dark:bg-slate-950 overflow-hidden`}>
                   <img 
-                    src={paper.thumbnail || `https://placehold.co/400x600/e2e8f0/1e293b?text=${encodeURIComponent(paper.exam)}`} 
+                    src={paper.thumbnail || `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(paper.exam || 'Paper')}`} 
                     alt={paper.title}
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(paper.exam || 'Paper')}`;
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {viewMode === 'grid' && (

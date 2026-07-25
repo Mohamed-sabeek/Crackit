@@ -198,8 +198,13 @@ const UserSyllabus = () => {
                     : 'w-full aspect-[4/5] relative'
                 } bg-slate-100 dark:bg-slate-950 overflow-hidden`}>
                   <img 
-                    src={book.thumbnail || `https://placehold.co/400x600/e2e8f0/1e293b?text=${encodeURIComponent(book.subject)}`} 
+                    src={book.thumbnail || `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(book.subject || 'Book')}`} 
                     alt={book.title}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `https://placehold.co/400x600/2563eb/ffffff?text=${encodeURIComponent(book.subject || 'Book')}`;
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {viewMode === 'grid' && (
